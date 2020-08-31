@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: master
+spec:
+  selector:
+    matchLabels:
+      app: master
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: master
+    spec:
+      containers:
+      - name: master
+        image: kworker3.rokon.local:5000/django:tagVersion
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8000
+          name: master-pod-port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: master
+  labels:
+    app: master
+spec:
+  type: NodePort
+  ports:
+  - port: 8000
+    targetPort: master-pod-port
+    nodePort: 31112
+    protocol: TCP
+  selector:
+    app: master
