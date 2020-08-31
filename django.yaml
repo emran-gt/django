@@ -1,37 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: master
+  name: qa
 spec:
   selector:
     matchLabels:
-      app: master
+      app: qa
   replicas: 3
   template:
     metadata:
       labels:
-        app: master
+        app: qa
     spec:
       containers:
-      - name: master
+      - name: qa
         image: rokonzaman/django-qa:tagVersion
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
-          name: master-pod-port
+          name: qa-pod-port
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: master
+  name: qa
   labels:
-    app: master
+    app: qa
 spec:
   type: NodePort
   ports:
   - port: 8000
-    targetPort: master-pod-port
+    targetPort: qa-pod-port
     nodePort: 31114
     protocol: TCP
   selector:
-    app: master
+    app: qa
