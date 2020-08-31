@@ -1,2 +1,2 @@
 #!/bin/bash
-sed "s/tagVersion/$1/g" django.yaml > django-Development.yaml
+sed "s/tagVersion/$1/g" django.yaml > django-master.yaml
