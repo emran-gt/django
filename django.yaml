@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: master
-        image: rokonzaman/django-master:tagVersion
+        image: rokonzaman/django-dev:tagVersion
         imagePullPolicy: Always
         ports:
         - containerPort: 8000
