@@ -18,7 +18,7 @@ pipeline {
 
         stage('Build Image'){
             steps{
-                sh "docker build . -t rokonzaman/django-master:${DOCKER_TAG}"
+                sh "docker build . -t rokonzaman/django-qa:${DOCKER_TAG}"
             }
         }
 
@@ -26,14 +26,14 @@ pipeline {
             steps{
             withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerHubPwd')]) {
                 sh "docker login -u rokonzaman -p ${dockerHubPwd}"
-                sh "docker push rokonzaman/django-master:${DOCKER_TAG}"
+                sh "docker push rokonzaman/django-qa:${DOCKER_TAG}"
             }
         }
     }
 
         stage('Remove Image'){
             steps{
-                sh "docker rmi rokonzaman/django-master:${DOCKER_TAG}"
+                sh "docker rmi rokonzaman/django-qa:${DOCKER_TAG}"
             }
         }
 
@@ -41,7 +41,7 @@ pipeline {
             steps{
                 sh "chmod +x changeTag.sh"
                 sh "./changeTag.sh ${DOCKER_TAG}"
-                sh " kubectl apply -f django-master.yaml"
+                sh " kubectl apply -f django-qa.yaml"
             }
         }
     }
