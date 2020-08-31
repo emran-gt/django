@@ -10,6 +10,9 @@ pipeline {
     environment{
         DOCKER_TAG = getDockerTag()
     }
+    options {
+     buildDiscarder(logRotator(numToKeepStr: '5'))
+ }
 
     stages{
 
