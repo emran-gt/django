@@ -31,7 +31,7 @@ spec:
   ports:
   - port: 8000
     targetPort: master-pod-port
-    nodePort: 31112
+    nodePort: 31113
     protocol: TCP
   selector:
     app: master
