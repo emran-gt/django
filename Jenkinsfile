@@ -2,7 +2,7 @@ pipeline {
     agent {
         node {
             label 'jenkins'
-<        }
+        }
     }
     triggers {
         pollSCM('* * * * *')
