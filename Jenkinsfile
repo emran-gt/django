@@ -1,12 +1,8 @@
 pipeline {
     agent {
         node {
-<<<<<<< HEAD
-            label 'kmaster'
-=======
             label 'jenkins'
->>>>>>> 0ec70df2c328d48608f2d2e751299666ba0cc2da
-        }
+<        }
     }
     triggers {
         pollSCM('* * * * *')
