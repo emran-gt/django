@@ -1,9 +1,6 @@
 pipeline {
-    agent {
-        node {
-            label 'kmaster'
-        }
-    }
+    agent any
+       
     triggers {
         pollSCM('* * * * *')
     }
